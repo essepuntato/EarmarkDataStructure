@@ -1,5 +1,6 @@
 package it.essepuntato.earmark.core.xml;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -22,8 +23,8 @@ import org.w3c.dom.NodeList;
  */
 public class EARMARKNamespaceContext implements NamespaceContext {
 	
-	private Map<String,String> prefixNamespace;
-	private Map<String,Set<String>> namespacePrefix;
+	private Map<String,String> prefixNamespace = new HashMap<String, String>();
+	private Map<String,Set<String>> namespacePrefix = new HashMap<String, Set<String>>();
 	
 	/**
 	 * A namespace context for EARMARK documents.

@@ -37,14 +37,16 @@ public class URIDocuverse extends Docuverse {
 	
 	protected String getCache() throws IOException {
 		if (cache == null) {
+			cache = "";
 			URL url = ((URI) hasContent()).toURL();
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
-			String inputLine;
-			while ((inputLine = in.readLine()) != null) ;
+			String inputLine = "";
+			while ((inputLine = in.readLine()) != null)  {
+				cache += inputLine;
+			}
 			in.close();
 			
-			cache = inputLine;
 		}
 		
 		return cache;

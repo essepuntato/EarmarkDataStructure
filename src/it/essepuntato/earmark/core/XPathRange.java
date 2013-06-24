@@ -78,7 +78,6 @@ public abstract class XPathRange extends Range {
 		
 		try {
 			String content = getDocuverseContent();
-			String textualResult = "";
 			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(); 
 			factory.setNamespaceAware(true); 
@@ -95,7 +94,7 @@ public abstract class XPathRange extends Range {
 			
 			int size = matched.getLength();
 			for (int i = 0; i < size; i++) {
-				textualResult += getTextualContentFromNode(matched.item(i));
+				result += getTextualContentFromNode(matched.item(i));
 			}
 			
 		} catch (XPathFactoryConfigurationException e) {
@@ -129,7 +128,6 @@ public abstract class XPathRange extends Range {
 				result += getTextualContentFromNode(children.item(i));
 			}
 		}
-		
 		return result;
 	}
 
