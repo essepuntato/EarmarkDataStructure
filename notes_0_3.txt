@@ -1,0 +1,14 @@
+### EARMARK Data Structure (version 0.3) ###
+
+Features of the current version:
+- it is completely based on the EARMARK model version 1.8.1, available in http://www.essepuntato.it/2008/12/earmark;
+- all the different kinds of range are now handled;
+- all the different kinds of documents are new handled;
+- the entire API use the Jena Framework only;
+- loading and storing methods are more quick than before;
+- bug fixing of a lot of methods and classes;
+- locations have been removed;
+- added a test suite.
+	
+-- debug
+Debug everything, in particular the methods for removing/cloning/adopting elements.

@@ -1,0 +1,21 @@
+### EARMARK Data Structure (version 0.4) ###
+
+# Bug fix
+
+- deleted the method "generalIdentifierIsUsedBy" because it actually was a non-well-implemented 
+duplicate of "getMarkupItemByGeneralIdentifier"
+
+- changed the behaviour of "removeMarkupItem": now only the (directly or indirectly) dominated nodes 
+of the input node are removed if and only if they are not dominated by other nodes that are not involved in the deletion
+
+- handled Ranges with null begin and end locations
+
+- now cloning an EARMARK document via "cloneNode" adds also the root nodes cloned to the document itself
+
+- removed the non-useful interface "EARMARKNamedNode"
+
+- now the it is possible to load automatically EARMARK documents linearised in Turtle
+
+# Add-on
+
+- a new test case (FrancescoPoggiTestOne) testing the previous bug fixes

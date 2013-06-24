@@ -1,0 +1,37 @@
+### TO DO
+
+-- clone methods
+Develop the clone method in all the classes that must have it.
+
+-- locations
+The current version (0.1) contains only the implementation of the CharNumberLocation. Moreover, 
+the Range method "getTextContent" is now implemented handling only that kind of location. Note that
+the implementation of the other ones is not straightforward, unless we perform, in some way,
+a sort of reduction form the XPath/XPointer locations to the CharNumber one.
+
+-- exceptions
+All the exceptions defined does not have any JAVADOC comment: we need to add them.
+
+-- external annotations
+Add the possibility to load/store non-EARMARK annotations. Issue: what happens to all the non-EARMARK
+annotations that concern an EARMARK item if, at certain point, I remove that item through the API?
+
+-- docuverses
+Even if the implementation of both the docuverses (StringDocuverse and URIDocuverse) exists,
+there is not a mechanism in the URIDocuverse class to obtain the particular string referred by the URI
+specified. For this reason, future development of this class regards the implementation of two new methods:
+	* "getReferredContent" to obtain the real string content of the document referred by the URI,
+	remembering to store this in an internal cache, to avoid the document downloading every time we 
+	call this method;
+	* "flush" to clean the internal cache.
+
+-- loading and storing
+The loading and storing mechanisms implemented in this version are quite trivial: they are based on
+RDF/XML file written in a certain way. It does not exist any kind of checks to understand:
+	* if the loaded file is EARMARK-well-formed (i.e., the EARMARK document is consistent against 
+	the EARMARK ontology);
+	* how to handle the different possible collection type declarations of a markup item, that could
+	be explicitly declared as a a new rdf:Description or implicitly declared as a blank node in the
+	markup item itself;
+	* how to handle scenarios in which a markup item is two different collections;
+	* etc.

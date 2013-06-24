@@ -1,0 +1,2 @@
+   EARMARK Data Structure
+   Copyright 2009 Silvio Peroni

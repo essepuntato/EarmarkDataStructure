@@ -1,0 +1,340 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY earmark "http://www.essepuntato.it/2008/12/earmark#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY ParadiseLost "http://www.essepuntato.it/2010/04/ParadiseLost#" >
+    <!ENTITY collections "http://swan.mindinformatics.org/ontologies/1.2/collections/" >
+]>
+
+
+<rdf:RDF xmlns="http://www.essepuntato.it/2010/04/ParadiseLost#"
+     xml:base="http://www.essepuntato.it/2010/04/ParadiseLost"
+     xmlns:earmark="http://www.essepuntato.it/2008/12/earmark#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:ParadiseLost="http://www.essepuntato.it/2010/2/ParadiseLost#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:collections="http://swan.mindinformatics.org/ontologies/1.2/collections/">
+    <owl:Ontology rdf:about="http://www.essepuntato.it/2010/04/ParadiseLost" />
+    
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#r1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;r1">
+        <rdf:type rdf:resource="&earmark;PointerRange"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:begins rdf:datatype="&xsd;integer">0</earmark:begins>
+        <earmark:ends rdf:datatype="&xsd;integer">33</earmark:ends>
+        <earmark:refersTo rdf:resource="&ParadiseLost;text"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#r2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;r2">
+        <rdf:type rdf:resource="&earmark;PointerRange"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:begins rdf:datatype="&xsd;integer">33</earmark:begins>
+        <earmark:ends rdf:datatype="&xsd;integer">43</earmark:ends>
+        <earmark:refersTo rdf:resource="&ParadiseLost;text"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#r3 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;r3">
+        <rdf:type rdf:resource="&earmark;PointerRange"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:begins rdf:datatype="&xsd;integer">43</earmark:begins>
+        <earmark:ends rdf:datatype="&xsd;integer">66</earmark:ends>
+        <earmark:refersTo rdf:resource="&ParadiseLost;text"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#r4 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;r4">
+        <rdf:type rdf:resource="&earmark;PointerRange"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:begins rdf:datatype="&xsd;integer">66</earmark:begins>
+        <earmark:ends rdf:datatype="&xsd;integer">85</earmark:ends>
+        <earmark:refersTo rdf:resource="&ParadiseLost;text"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#r5 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;r5">
+        <rdf:type rdf:resource="&earmark;PointerRange"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:begins rdf:datatype="&xsd;integer">85</earmark:begins>
+        <earmark:ends rdf:datatype="&xsd;integer">98</earmark:ends>
+        <earmark:refersTo rdf:resource="&ParadiseLost;text"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#r6 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;r6">
+        <rdf:type rdf:resource="&earmark;PointerRange"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:ends rdf:datatype="&xsd;integer">113</earmark:ends>
+        <earmark:begins rdf:datatype="&xsd;integer">98</earmark:begins>
+        <earmark:refersTo rdf:resource="&ParadiseLost;text"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#stanza -->
+
+    <owl:Thing rdf:about="&ParadiseLost;stanza">
+        <rdf:type rdf:resource="&earmark;Element"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasGeneralIdentifier rdf:datatype="&xsd;string">div</earmark:hasGeneralIdentifier>
+        <collections:firstItem rdf:resource="&ParadiseLost;stanza_i1"/>
+        <collections:item rdf:resource="&ParadiseLost;stanza_i2"/>
+        <collections:lastItem rdf:resource="&ParadiseLost;stanza_i3"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#stanza_i1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;stanza_i1">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;stanza_i2"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;verse1"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#stanza_i2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;stanza_i2">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;stanza_i3"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;verse2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#stanza_i3 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;stanza_i3">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;verse3"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#syntax -->
+
+    <owl:Thing rdf:about="&ParadiseLost;syntax">
+        <rdf:type rdf:resource="&earmark;Element"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasGeneralIdentifier rdf:datatype="&xsd;string">div</earmark:hasGeneralIdentifier>
+        <collections:firstItem rdf:resource="&ParadiseLost;syntax_i1"/>
+        <collections:lastItem rdf:resource="&ParadiseLost;syntax_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#syntax_i1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;syntax_i1">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;syntax_i2"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;unit1"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#syntax_i2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;syntax_i2">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;unit2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#text -->
+
+    <owl:Thing rdf:about="&ParadiseLost;text">
+        <rdf:type rdf:resource="&earmark;StringDocuverse"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasContent rdf:datatype="&xsd;string">Of Man&#39;s first disobedience, and the fruit Of That forbidden tree whose mortal taste Brought death into the World</earmark:hasContent>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#unit1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;unit1">
+        <rdf:type rdf:resource="&earmark;Element"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasGeneralIdentifier rdf:datatype="&xsd;string">span</earmark:hasGeneralIdentifier>
+        <collections:firstItem rdf:resource="&ParadiseLost;unit1_i1"/>
+        <collections:lastItem rdf:resource="&ParadiseLost;unit1_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#unit1_i1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;unit1_i1">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r2"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;unit1_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#unit1_i2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;unit1_i2">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r3"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#unit2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;unit2">
+        <rdf:type rdf:resource="&earmark;Element"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasGeneralIdentifier rdf:datatype="&xsd;string">span</earmark:hasGeneralIdentifier>
+        <collections:firstItem rdf:resource="&ParadiseLost;unit2_i1"/>
+        <collections:lastItem rdf:resource="&ParadiseLost;unit2_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#unit2_i1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;unit2_i1">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r4"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;unit2_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#unit2_i2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;unit2_i2">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r5"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse1">
+        <rdf:type rdf:resource="&earmark;Element"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasGeneralIdentifier rdf:datatype="&xsd;string">p</earmark:hasGeneralIdentifier>
+        <collections:firstItem rdf:resource="&ParadiseLost;verse1_i1"/>
+        <collections:lastItem rdf:resource="&ParadiseLost;verse1_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse1_i1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse1_i1">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r1"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;verse1_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse1_i2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse1_i2">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse2">
+        <rdf:type rdf:resource="&earmark;Element"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasGeneralIdentifier rdf:datatype="&xsd;string">p</earmark:hasGeneralIdentifier>
+        <collections:firstItem rdf:resource="&ParadiseLost;verse2_i1"/>
+        <collections:lastItem rdf:resource="&ParadiseLost;verse2_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse2_i1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse2_i1">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r3"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;verse2_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse2_i2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse2_i2">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r4"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse3 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse3">
+        <rdf:type rdf:resource="&earmark;Element"/>
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <earmark:hasGeneralIdentifier rdf:datatype="&xsd;string">p</earmark:hasGeneralIdentifier>
+        <collections:firstItem rdf:resource="&ParadiseLost;verse3_i1"/>
+        <collections:lastItem rdf:resource="&ParadiseLost;verse3_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse3_i1 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse3_i1">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r5"/>
+        <collections:nextItem rdf:resource="&ParadiseLost;verse3_i2"/>
+    </owl:Thing>
+    
+
+
+    <!-- http://www.essepuntato.it/2010/2/ParadiseLost#verse3_i2 -->
+
+    <owl:Thing rdf:about="&ParadiseLost;verse3_i2">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <collections:itemContent rdf:resource="&ParadiseLost;r6"/>
+    </owl:Thing>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.1.0.20069) http://owlapi.sourceforge.net -->

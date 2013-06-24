@@ -1,0 +1,27 @@
+### EARMARK Data Structure (version 0.2) ###
+
+Features of the current version:
+- it is completely based on the EARMARK model version 1.6, available in http://www.essepuntato.it/2008/12/earmark and in http://palindrom.es/earmark, that is an OWL2 DL ontology;
+- all markup items are now collections (http://swan.mindinformatics.org/spec/1.2/collections.html) of other items, in order to maintain EARMARK documents OWL2-DL-compliant. We can choose among sets, bags and lists;
+- it implements a first validation mechanism for EARMARK documents based on Pellet 2.0 (http://pellet.owldl.com/);
+- it is possible to store/load additional assertions into/from an EARMARK document, handling them by using the Jena RDF data model;
+- the rationale behind the SWRL rules defined in the EARMARK ontology, that allow us to infer when a range/location is the same of another one, is completely supported by opportune Java methods.
+
+## TODO
+-- locations
+The current version contains only the implementation of the CharNumberLocation. Moreover, 
+the Range method "getTextContent" is now implemented handling only that kind of location. Note that
+the implementation of the other ones is not straightforward, unless we perform, in some way,
+a sort of reduction form the XPath/XPointer locations to the CharNumber one.
+
+-- docuverses
+Even if the implementation of both the docuverses (StringDocuverse and URIDocuverse) exists,
+there is not a mechanism in the URIDocuverse class to obtain the particular string referred by the URI
+specified. For this reason, future development of this class regards the implementation of two new methods:
+	* "getReferredContent" to obtain the real string content of the document referred by the URI,
+	remembering to store this in an internal cache, to avoid the document downloading every time we 
+	call this method;
+	* "flush" to clean the internal cache.
+	
+-- debug
+Debug everything, in particular the methods for removing/cloning/adopting elements.
