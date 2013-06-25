@@ -89,4 +89,43 @@ public interface EARMARKItem extends Cloneable {
 	 * @return the statements removed.
 	 */
 	public java.util.Set<Statement> removeAllAssertions();
+	
+	/**
+	 * Thus method creates a linguistic act involving the EARMARK item as information entity and
+	 * links it to a particular reference and a particular meaning. In addition, it adds provenance
+	 * information about the agent who performed that act and the time when the act has been performed.
+	 * @param reference the object to which the EARMARK item actually refers to.
+	 * @param meaning the meaning associated to that particular EARMARK item.
+	 * @param agent the agent performing the linguistic act.
+	 * @return the linguistic act created.
+	 */
+	public Resource addLinguisticAct(Resource reference, Resource meaning, Resource agent);
+	
+	/**
+	 * Thus method creates a linguistic act involving the EARMARK item as information entity and
+	 * links it to a particular reference and a particular meaning. In addition, it adds provenance
+	 * information about the agent who performed that act and the time when the act has been performed.
+	 * @param id the uri of the linguistic act to be created.
+	 * @param reference the object to which the EARMARK item actually refers to.
+	 * @param meaning the meaning associated to that particular EARMARK item.
+	 * @param agent the agent performing the linguistic act.
+	 * @return the linguistic act created.
+	 */
+	public Resource addLinguisticAct(URI uri, Resource reference, Resource meaning, Resource agent);
+	
+	/**
+	 * This method removes the linguistic act having this item as
+	 * information entity.
+	 * 
+	 * @return the statements removed.
+	 */
+	public java.util.Set<Statement> removeLinguisticAct(Resource linguisticAct);
+	
+	/**
+	 * This method removes all the linguistic acts having this item as
+	 * information entity.
+	 * 
+	 * @return the statements removed.
+	 */
+	public java.util.Set<Statement> removeAllLinguisticActs();
 }

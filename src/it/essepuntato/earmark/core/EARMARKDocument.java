@@ -14,19 +14,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.sql.rowset.Predicate;
+
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.ResIterator;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.vocabulary.RDF;
 
 /**
  * This class represents an EARMARK document. Is is used to create new markup items (elements,
@@ -2544,6 +2550,184 @@ public class EARMARKDocument implements EARMARKItem, EARMARKHierarchicalNode {
 	}
 	
 	/**
+	 * This method create and add a linguistic act to the model.
+	 * @param id the uri identifying the linguistic act (may be null).
+	 * @param item the EARMARK item being the information entity of the linguistic act.
+	 * @param reference the reference of the linguistic act.
+	 * @param meaning the meaning of the linguistic act.
+	 * @param agent the agent creating the linguistic act.
+	 * @return the resource describing the linguistic act.
+	 */
+	protected Resource addLinguisticAct(
+			URI id, EARMARKItem item, Resource reference, Resource meaning, Resource agent) {
+		String base = "http://www.ontologydesignpatterns.org/cp/owl/semiotics.owl#";
+		Property denotes = rdf.createProperty(base + "denotes");
+		Property hasConceptualization = rdf.createProperty(base + "hasConceptualization");
+		Property hasInterpretant = rdf.createProperty(base + "hasInterpretant");
+		Property hasMeaning = rdf.createProperty(base + "hasMeaning");
+		Property hasInformationEntity = rdf.createProperty(base + "hasInformationEntity");
+		Property hasReference = rdf.createProperty(base + "hasReference");
+		Resource LinguisticAct = rdf.createResource(base + "LinguisticAct");
+		Resource information_entity = rdf.createResource(item.hasId().toString());
+		
+		String prov = "http://www.w3.org/ns/prov#";
+		Property wasAttributedTo = rdf.createProperty(prov + "wasAttributedTo");
+		Property generatedAtTime = rdf.createProperty(prov + "generatedAtTime");
+		Calendar time = Calendar.getInstance();
+		
+		Resource result = (id == null ? rdf.createResource() : rdf.createResource(id.toString()));
+		Statement statement = null;
+		
+		// Linguistict Act assertions
+		statement = rdf.createStatement(result,RDF.type,LinguisticAct); rdf.add(statement);
+		statement = rdf.createStatement(result,hasInformationEntity,information_entity); rdf.add(statement);
+		
+		if (reference != null) {
+			statement = rdf.createStatement(result,hasReference,reference); rdf.add(statement);
+			statement = rdf.createStatement(information_entity,denotes,reference); rdf.add(statement);
+		}
+		if (meaning != null) {
+			statement = rdf.createStatement(result,hasMeaning,meaning); rdf.add(statement);
+			statement = rdf.createStatement(information_entity,hasInterpretant,meaning); rdf.add(statement);
+		}
+		if (reference != null && meaning != null) {
+			statement = rdf.createStatement(reference,hasConceptualization,meaning); rdf.add(statement);
+		}
+		
+		// Provenance
+		statement = rdf.createStatement(result,generatedAtTime,rdf.createTypedLiteral(time)); rdf.add(statement);
+		if (agent != null) {
+			statement = rdf.createStatement(result,wasAttributedTo,agent); rdf.add(statement);
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * This method remove all the linguistic acts having the input EARMARK item as information entity.
+	 * @param item the item to consider.
+	 * @return All the RDF statements removed from the model.
+	 */
+	protected Set<Statement> removeAllLinguisticActs(EARMARKItem item) {
+		Set<Statement> result = new HashSet<Statement>();
+		
+		String base = "http://www.ontologydesignpatterns.org/cp/owl/semiotics.owl#";
+		Property hasInformationEntity = rdf.createProperty(base + "hasInformationEntity");
+		
+		ResIterator linguisticActs = rdf.listSubjectsWithProperty(
+				hasInformationEntity, rdf.createResource(item.hasId().toString()));
+		
+		while (linguisticActs.hasNext()) {
+			result.addAll(removeLinguisticAct(item, linguisticActs.next()));
+		}
+				
+		return result;
+	}
+	
+	/**
+	 * /**
+	 * This method remove the linguistic acts having the input EARMARK item as information entity.
+	 * @param item the item to consider.
+	 * @param linguisticAct the linguistic act to remove.
+	 * @return All the RDF statements removed from the model.
+	 */
+	protected Set<Statement> removeLinguisticAct(EARMARKItem item, Resource linguisticAct) {
+		Set<Statement> result = new HashSet<Statement>();
+		
+		String base = "http://www.ontologydesignpatterns.org/cp/owl/semiotics.owl#";
+		Property hasInformationEntity = rdf.createProperty(base + "hasInformationEntity");
+		
+		boolean isAssociatedToItem =  
+			rdf.listStatements(
+				linguisticAct,
+				hasInformationEntity, 
+				rdf.createResource(item.hasId().toString())).hasNext();
+		
+		if (isAssociatedToItem) {
+			Property denotes = rdf.createProperty(base + "denotes");
+			Property hasConceptualization = rdf.createProperty(base + "hasConceptualization");
+			Property hasInterpretant = rdf.createProperty(base + "hasInterpretant");
+			Property hasMeaning = rdf.createProperty(base + "hasMeaning");
+			Property hasReference = rdf.createProperty(base + "hasReference");
+			
+			Resource information_entity = null;
+			Resource reference = null;
+			Resource meaning = null;
+			
+			StmtIterator objectPropertyStatements = rdf.listStatements(linguisticAct, null, (Resource) null);
+			while (objectPropertyStatements.hasNext()) {
+				Statement statement = objectPropertyStatements.next();
+				if (statement.getPredicate().equals(hasInformationEntity)) {
+					information_entity = (Resource) statement.getObject();
+				}
+				else if (statement.getPredicate().equals(hasMeaning)) {
+					meaning = (Resource) statement.getObject();
+				}
+				else if (statement.getPredicate().equals(hasReference)) {
+					reference = (Resource) statement.getObject();
+				}
+				result.add(statement);
+			}
+			
+			rdf.remove(new ArrayList<Statement>(result));
+			
+			if (
+					information_entity != null && reference != null &&
+					!areInvolvedInLinguisticActAs(information_entity, hasInformationEntity, reference, hasReference)) {
+				Statement statement = rdf.createStatement(information_entity, denotes, reference);
+				result.add(statement);
+				rdf.remove(statement);
+			}
+			
+			if (
+					information_entity != null && meaning != null &&
+					!areInvolvedInLinguisticActAs(information_entity, hasInformationEntity, meaning, hasMeaning)) {
+				Statement statement = rdf.createStatement(information_entity, hasInterpretant, meaning);
+				result.add(statement);
+				rdf.remove(statement);
+			}
+			
+			if (
+					reference != null && meaning != null &&
+					!areInvolvedInLinguisticActAs(reference, hasReference, meaning, hasMeaning)) {
+				Statement statement = rdf.createStatement(reference, hasConceptualization, meaning);
+				result.add(statement);
+				rdf.remove(statement);
+			}
+			
+			StmtIterator dataPropertyStatements = rdf.listStatements(linguisticAct, null, (String) null);
+			result.addAll(dataPropertyStatements.toSet());
+			rdf.remove(dataPropertyStatements);
+		}
+		
+		return result;
+	}
+	
+	private boolean areInvolvedInLinguisticActAs(Resource entity1, Property as1, Resource entity2, Property as2) {
+		return !isInvolvedInLinguisticActAs(entity2, as2, isInvolvedInLinguisticActAs(entity1, as1)).isEmpty();
+	}
+	
+	private Set<Resource> isInvolvedInLinguisticActAs(Resource entity, Property as) {
+		String base = "http://www.ontologydesignpatterns.org/cp/owl/semiotics.owl#";
+		Resource LinguisticAct = rdf.createResource(base + "LinguisticAct");
+		
+		ResIterator linguisticActs = rdf.listSubjectsWithProperty(RDF.type, LinguisticAct);
+		return isInvolvedInLinguisticActAs(entity, as, linguisticActs.toSet());
+	}
+	
+	private Set<Resource> isInvolvedInLinguisticActAs(Resource entity, Property as, Set<Resource> linguisticActs) {
+		Set<Resource> result = new HashSet<Resource>();
+		
+		for (Resource linguisticAct : linguisticActs) {
+			if (rdf.listStatements(linguisticAct, as, entity).hasNext()) {
+				result.add(linguisticAct);
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
 	 * This method removes all the assertions where the item specified is
 	 * a subject or an object.
 	 * 
@@ -2936,5 +3120,27 @@ public class EARMARKDocument implements EARMARKItem, EARMARKHierarchicalNode {
 		}
 		
 		return currentId;
+	}
+
+	@Override
+	public Resource addLinguisticAct(Resource reference, Resource meaning,
+			Resource agent) {
+		return addLinguisticAct(null, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Resource addLinguisticAct(URI uri, Resource reference,
+			Resource meaning, Resource agent) {
+		return addLinguisticAct(uri, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Set<Statement> removeAllLinguisticActs() {
+		return removeAllLinguisticActs(this);
+	}
+
+	@Override
+	public Set<Statement> removeLinguisticAct(Resource linguisticAct) {
+		return removeLinguisticAct(this, linguisticAct);
 	}
 }

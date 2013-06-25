@@ -100,6 +100,8 @@ public class JenaWriter extends EARMARKBaseLogger implements EARMARKWriter {
 		model.setNsPrefix("owl", "http://www.w3.org/2002/07/owl#");
 		model.setNsPrefix("rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 		model.setNsPrefix("rdfs", "http://www.w3.org/2000/01/rdf-schema#");
+		model.setNsPrefix("prov", "http://www.w3.org/ns/prov#");
+		model.setNsPrefix("la", "http://www.ontologydesignpatterns.org/cp/owl/semiotics.owl#");
 		model.setNsPrefixes(prefixes);
 	}
 	

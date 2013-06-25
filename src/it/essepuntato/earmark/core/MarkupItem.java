@@ -468,4 +468,26 @@ implements EARMARKItem, EARMARKHierarchicalNode, EARMARKChildNode {
 		String ns = (hasNamespace() == null ? "" : " xmlns=\"" + hasNamespace() + "\"");
 		return gi + ns + id;
 	}
+	
+	@Override
+	public Resource addLinguisticAct(Resource reference, Resource meaning,
+			Resource agent) {
+		return getOwnerDocument().addLinguisticAct(null, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Resource addLinguisticAct(URI uri, Resource reference,
+			Resource meaning, Resource agent) {
+		return getOwnerDocument().addLinguisticAct(uri, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Set<Statement> removeAllLinguisticActs() {
+		return getOwnerDocument().removeAllLinguisticActs(this);
+	}
+
+	@Override
+	public Set<Statement> removeLinguisticAct(Resource linguisticAct) {
+		return getOwnerDocument().removeLinguisticAct(this, linguisticAct);
+	}
 }

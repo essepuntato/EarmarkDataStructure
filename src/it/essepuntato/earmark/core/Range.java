@@ -309,4 +309,26 @@ public abstract class Range implements EARMARKItem, EARMARKChildNode {
 		String end = (ends() == null ? "U" : ends().toString());
 		return "# " + getTextContent() + "\n" + hasId() + " [" + begin + "-" + end + "] -> " + refersTo().hasLocalId();
 	}
+	
+	@Override
+	public Resource addLinguisticAct(Resource reference, Resource meaning,
+			Resource agent) {
+		return document.addLinguisticAct(null, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Resource addLinguisticAct(URI uri, Resource reference,
+			Resource meaning, Resource agent) {
+		return document.addLinguisticAct(uri, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Set<Statement> removeAllLinguisticActs() {
+		return document.removeAllLinguisticActs(this);
+	}
+
+	@Override
+	public Set<Statement> removeLinguisticAct(Resource linguisticAct) {
+		return document.removeLinguisticAct(this, linguisticAct);
+	}
 }

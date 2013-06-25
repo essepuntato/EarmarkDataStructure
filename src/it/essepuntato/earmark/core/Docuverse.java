@@ -190,6 +190,28 @@ public abstract class Docuverse implements EARMARKItem {
 		return getEARMARKDocument().removeAllAssertions(this);
 	}
 	
+	@Override
+	public Resource addLinguisticAct(Resource reference, Resource meaning,
+			Resource agent) {
+		return getEARMARKDocument().addLinguisticAct(null, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Resource addLinguisticAct(URI uri, Resource reference,
+			Resource meaning, Resource agent) {
+		return getEARMARKDocument().addLinguisticAct(uri, this, reference, meaning, agent);
+	}
+
+	@Override
+	public Set<Statement> removeAllLinguisticActs() {
+		return getEARMARKDocument().removeAllLinguisticActs(this);
+	}
+
+	@Override
+	public Set<Statement> removeLinguisticAct(Resource linguisticAct) {
+		return getEARMARKDocument().removeLinguisticAct(this, linguisticAct);
+	}
+	
 	/**
 	 * This method returns a new docuverse initialised with an identifier different from the calling node one and
 	 * containing the same content.
