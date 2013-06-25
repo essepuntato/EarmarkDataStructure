@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 
 import javax.xml.XMLConstants;
 import javax.xml.namespace.NamespaceContext;
@@ -48,7 +49,11 @@ public class EARMARKNamespaceContext implements NamespaceContext {
 
 	@Override
 	public String getNamespaceURI(String prefix) {
-		return prefixNamespace.get(prefix);
+		if (prefixNamespace.containsKey(prefix)) {
+			return prefixNamespace.get(prefix);
+		} else {
+			return XMLConstants.NULL_NS_URI;
+		}
 	}
 
 	@Override
@@ -69,41 +74,44 @@ public class EARMARKNamespaceContext implements NamespaceContext {
 	/* Fine all the namespaces of a node and add it to the proper lists */
 	private void findNamespaces(Node node) {
 		if (node != null) {
-			String ns = node.getNamespaceURI();
-			String prefix = node.getPrefix();
-		
-			if (prefix == null) {
-				prefix = "";
-			}
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				String ns = node.getNamespaceURI();
+				String prefix = node.getPrefix();
+				
+				if (prefix == null) {
+					prefix = XMLConstants.DEFAULT_NS_PREFIX;
+				}
+				
+				if (ns == null) {
+					ns = "";
+				}
 			
-			if (ns == null) {
-				ns = "";
-			}
-		
-			
-			if (!prefixNamespace.containsKey(prefix)) {
-				prefixNamespace.put(prefix, ns);
-			}
-			
-			Set<String> prefixes = namespacePrefix.get(ns);
-			if (prefixes == null) {
-				prefixes = new HashSet<String>();
-				namespacePrefix.put(ns, prefixes);
-			}
-			prefixes.add(prefix);
-			
-			NamedNodeMap attributes = node.getAttributes();
-			if (attributes != null) {
-				int attributesSize = attributes.getLength();
-				for (int i = 0; i < attributesSize ; i++) {
-					findNamespaces(attributes.item(i));
+				if (!prefixNamespace.containsKey(prefix)) {
+					prefixNamespace.put(prefix, ns);
+				}
+				
+				Set<String> prefixes = namespacePrefix.get(ns);
+				if (prefixes == null) {
+					prefixes = new HashSet<String>();
+					namespacePrefix.put(ns, prefixes);
+				}
+				prefixes.add(prefix);
+				
+				NamedNodeMap attributes = node.getAttributes();
+				if (attributes != null) {
+					int attributesSize = attributes.getLength();
+					for (int i = 0; i < attributesSize ; i++) {
+						findNamespaces(attributes.item(i));
+					}
 				}
 			}
 			
-			NodeList children = node.getChildNodes();
-			int childrenSize = children.getLength();
-			for (int i = 0; i < childrenSize ; i++) {
-				findNamespaces(children.item(i));
+			if (node.getNodeType() == Node.ELEMENT_NODE || node.getNodeType() == Node.DOCUMENT_NODE) {
+				NodeList children = node.getChildNodes();
+				int childrenSize = children.getLength();
+				for (int i = 0; i < childrenSize ; i++) {
+					findNamespaces(children.item(i));
+				}
 			}
 		}
 	}

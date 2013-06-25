@@ -77,7 +77,7 @@ public abstract class XPathRange extends Range {
 		String result = "";
 		
 		try {
-			String content = getDocuverseContent();
+			String content = getDocuverseContent().replaceAll("xmlns=", "xlmns="); /* OMG... */
 			
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(); 
 			factory.setNamespaceAware(true); 

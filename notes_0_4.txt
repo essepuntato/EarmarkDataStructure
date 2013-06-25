@@ -16,6 +16,8 @@ of the input node are removed if and only if they are not dominated by other nod
 
 - now the it is possible to load automatically EARMARK documents linearised in Turtle
 
+- fixed issues on xpath pointer range
+
 # Add-on
 
 - a new test case (FrancescoPoggiTestOne) testing the previous bug fixes
